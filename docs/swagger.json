@@ -1,0 +1,1510 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "API Documentation",
+        "title": "My Project",
+        "termsOfService": "https://dospecs.monstercode.net/en/guide/tnc.html",
+        "contact": {
+            "name": "Developer",
+            "email": "developer.team.tog@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/api/v1",
+    "paths": {
+        "/": {
+            "get": {
+                "description": "show basic response",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "API"
+                ],
+                "summary": "show basic response",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "bad request",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    },
+                    "404": {
+                        "description": "not found",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    },
+                    "409": {
+                        "description": "conflict",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "internal error",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/album": {
+            "get": {
+                "description": "Get List of Album",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Album"
+                ],
+                "summary": "Get List of Album",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Album"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create new Album",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Album"
+                ],
+                "summary": "Create new Album",
+                "parameters": [
+                    {
+                        "description": "Album data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.AlbumApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/model.AlbumApi"
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "401": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/album/{id}": {
+            "get": {
+                "description": "get Album by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Album"
+                ],
+                "summary": "get Album by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Album ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/model.Album"
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": ""
+                    }
+                }
+            },
+            "put": {
+                "description": "Update Album by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Album"
+                ],
+                "summary": "Update Album by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Album ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Album data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.AlbumApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.AlbumApi"
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "401": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete Album by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Album"
+                ],
+                "summary": "Delete Album by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Album ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/artist": {
+            "get": {
+                "description": "Get List of Artist",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Artist"
+                ],
+                "summary": "Get List of Artist",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Artist"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create new Artist",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Artist"
+                ],
+                "summary": "Create new Artist",
+                "parameters": [
+                    {
+                        "description": "Artist data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.ArtistApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/model.ArtistApi"
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "401": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/artist/{id}": {
+            "get": {
+                "description": "Get Artist by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Artist"
+                ],
+                "summary": "Get Artist by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Artist ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Artist"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": ""
+                    }
+                }
+            },
+            "put": {
+                "description": "Update Artist by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Artist"
+                ],
+                "summary": "Update Artist by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Artist ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Artist data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.ArtistApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.ArtistApi"
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "401": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete Artits by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Artist"
+                ],
+                "summary": "Delete Artits by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Artits ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/gendre": {
+            "get": {
+                "description": "Get List of Gendre",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Gendre"
+                ],
+                "summary": "Get List of Gendre",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Gendre"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "create new gendre",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Gendre"
+                ],
+                "summary": "Create new Gendre",
+                "parameters": [
+                    {
+                        "description": "Gendre data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.GendreApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "created",
+                        "schema": {
+                            "$ref": "#/definitions/model.GendreApi"
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "401": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/gendre/{id}": {
+            "get": {
+                "description": "get gendre by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Gendre"
+                ],
+                "summary": "get gendre by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Gendre ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/model.Gendre"
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": ""
+                    }
+                }
+            },
+            "put": {
+                "description": "udpated Gendre by Id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Gendre"
+                ],
+                "summary": "Updated Gendre by Id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Gendre ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Gendre data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.GendreApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.GendreApi"
+                        }
+                    },
+                    "401": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete Gendre by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Gendre"
+                ],
+                "summary": "Delete Gendre by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Gendre ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/info.json": {
+            "get": {
+                "description": "show info response",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "API"
+                ],
+                "summary": "show info response",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "bad request",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    },
+                    "404": {
+                        "description": "not found",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    },
+                    "409": {
+                        "description": "conflict",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "internal error",
+                        "schema": {
+                            "$ref": "#/definitions/lib.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/playlist": {
+            "get": {
+                "description": "Get List of Playlist",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Playlist"
+                ],
+                "summary": "Get List of Playlist",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.PlayList"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create new Playlist",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Playlist"
+                ],
+                "summary": "Create new Playlist",
+                "parameters": [
+                    {
+                        "description": "Playlist data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.PlayListApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/model.PlayListApi"
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "401": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/playlist/{id}": {
+            "get": {
+                "description": "get Playlist by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Playlist"
+                ],
+                "summary": "get Playlist by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "PlayList ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/model.PlayList"
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": ""
+                    }
+                }
+            },
+            "put": {
+                "description": "Update Playlist by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Playlist"
+                ],
+                "summary": "Update Playlist by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Playlist ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Playlist data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.PlayListApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.PlayListApi"
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "401": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete Playlist by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Playlist"
+                ],
+                "summary": "Delete Playlist by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Playlist ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/playlist_type": {
+            "get": {
+                "description": "Get List of PlaylistType",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "PlaylistType"
+                ],
+                "summary": "Get List of PlaylistType",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.PlaylistType"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "create new PlaylistType",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "PlaylistType"
+                ],
+                "summary": "Create new PlaylistType",
+                "parameters": [
+                    {
+                        "description": "PlaylistType data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.PlaylistTypeApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "created",
+                        "schema": {
+                            "$ref": "#/definitions/model.PlaylistTypeApi"
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "401": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/playlist_type/{id}": {
+            "get": {
+                "description": "get PlaylistType by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "PlaylistType"
+                ],
+                "summary": "get PlaylistType by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "PlaylistType ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/model.PlaylistType"
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": ""
+                    }
+                }
+            },
+            "put": {
+                "description": "udpated PlaylistType by Id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "PlaylistType"
+                ],
+                "summary": "Updated PlaylistType by Id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "PlaylistType ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "PlaylistType data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.PlaylistTypeApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.PlaylistTypeApi"
+                        }
+                    },
+                    "401": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete PlaylistType by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "PlaylistType"
+                ],
+                "summary": "Delete PlaylistType by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "PlaylistType ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/song": {
+            "get": {
+                "description": "Get List of Song",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Song"
+                ],
+                "summary": "Get List of Song",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Song"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create new Song",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Song"
+                ],
+                "summary": "Create new Song",
+                "parameters": [
+                    {
+                        "description": "Song data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.SongApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/model.SongApi"
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "401": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/song/{id}": {
+            "get": {
+                "description": "Get Song by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Song"
+                ],
+                "summary": "Get Song by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Song ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Song"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": ""
+                    }
+                }
+            },
+            "put": {
+                "description": "Update Song by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Song"
+                ],
+                "summary": "Update Song by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Song ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Song data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.SongApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.SongApi"
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "401": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete Song by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Song"
+                ],
+                "summary": "Delete Song by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Song ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "404": {
+                        "description": ""
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "lib.Response": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "description": "response message",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "http status",
+                    "type": "integer"
+                }
+            }
+        },
+        "model.Album": {
+            "type": "object",
+            "properties": {
+                "album_name": {
+                    "type": "string"
+                },
+                "artist": {
+                    "$ref": "#/definitions/model.Artist"
+                },
+                "artist_id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "created_at": {
+                    "description": "created at automatically inserted on post",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "gendre": {
+                    "$ref": "#/definitions/model.Gendre"
+                },
+                "gendre_id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "realese_date-date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "updated_at": {
+                    "description": "updated at automatically changed on put or add on post",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "model.AlbumApi": {
+            "type": "object",
+            "properties": {
+                "album_name": {
+                    "type": "string"
+                },
+                "artist_id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "gendre_id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "realese_date-date": {
+                    "type": "string",
+                    "format": "date"
+                }
+            }
+        },
+        "model.Artist": {
+            "type": "object",
+            "properties": {
+                "about": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "created at automatically inserted on post",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "description": "updated at automatically changed on put or add on post",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "model.ArtistApi": {
+            "type": "object",
+            "properties": {
+                "about": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.Gendre": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "created at automatically inserted on post",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "genreDescr": {
+                    "type": "string"
+                },
+                "genreName": {
+                    "type": "string"
+                },
+                "id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "updated_at": {
+                    "description": "updated at automatically changed on put or add on post",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "model.GendreApi": {
+            "type": "object",
+            "properties": {
+                "genreDescr": {
+                    "type": "string"
+                },
+                "genreName": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.PlayList": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "created at automatically inserted on post",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "creation_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "playlist_desc": {
+                    "type": "string"
+                },
+                "playlist_name": {
+                    "type": "string"
+                },
+                "playlist_pic": {
+                    "type": "string"
+                },
+                "playlist_type": {
+                    "$ref": "#/definitions/model.PlaylistType"
+                },
+                "playlist_type_id": {
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "updated_at": {
+                    "description": "updated at automatically changed on put or add on post",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "model.PlayListApi": {
+            "type": "object",
+            "properties": {
+                "creation_date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "playlist_desc": {
+                    "type": "string"
+                },
+                "playlist_name": {
+                    "type": "string"
+                },
+                "playlist_pic": {
+                    "type": "string"
+                },
+                "playlist_type_id": {
+                    "type": "string",
+                    "format": "uuid"
+                }
+            }
+        },
+        "model.PlaylistType": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "created at automatically inserted on post",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "playlist_type_name": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "description": "updated at automatically changed on put or add on post",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "model.PlaylistTypeApi": {
+            "type": "object",
+            "properties": {
+                "playlist_type_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.Song": {
+            "type": "object",
+            "properties": {
+                "artist": {
+                    "$ref": "#/definitions/model.Artist"
+                },
+                "artist_id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "created_at": {
+                    "description": "created at automatically inserted on post",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "gendre": {
+                    "type": "string"
+                },
+                "id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "description": "updated at automatically changed on put or add on post",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "year": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.SongApi": {
+            "type": "object",
+            "properties": {
+                "artist_id": {
+                    "description": "model ID",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "gendre": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "year": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

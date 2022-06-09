@@ -1,0 +1,1015 @@
+basePath: /api/v1
+definitions:
+  lib.Response:
+    properties:
+      message:
+        description: response message
+        type: string
+      status:
+        description: http status
+        type: integer
+    type: object
+  model.Album:
+    properties:
+      album_name:
+        type: string
+      artist:
+        $ref: '#/definitions/model.Artist'
+      artist_id:
+        description: model ID
+        format: uuid
+        type: string
+      created_at:
+        description: created at automatically inserted on post
+        format: date-time
+        type: string
+      gendre:
+        $ref: '#/definitions/model.Gendre'
+      gendre_id:
+        description: model ID
+        format: uuid
+        type: string
+      id:
+        description: model ID
+        format: uuid
+        type: string
+      realese_date-date:
+        format: date
+        type: string
+      updated_at:
+        description: updated at automatically changed on put or add on post
+        format: date-time
+        type: string
+    type: object
+  model.AlbumApi:
+    properties:
+      album_name:
+        type: string
+      artist_id:
+        description: model ID
+        format: uuid
+        type: string
+      gendre_id:
+        description: model ID
+        format: uuid
+        type: string
+      realese_date-date:
+        format: date
+        type: string
+    type: object
+  model.Artist:
+    properties:
+      about:
+        type: string
+      created_at:
+        description: created at automatically inserted on post
+        format: date-time
+        type: string
+      id:
+        description: model ID
+        format: uuid
+        type: string
+      name:
+        type: string
+      updated_at:
+        description: updated at automatically changed on put or add on post
+        format: date-time
+        type: string
+    type: object
+  model.ArtistApi:
+    properties:
+      about:
+        type: string
+      name:
+        type: string
+    type: object
+  model.Gendre:
+    properties:
+      created_at:
+        description: created at automatically inserted on post
+        format: date-time
+        type: string
+      genreDescr:
+        type: string
+      genreName:
+        type: string
+      id:
+        description: model ID
+        format: uuid
+        type: string
+      updated_at:
+        description: updated at automatically changed on put or add on post
+        format: date-time
+        type: string
+    type: object
+  model.GendreApi:
+    properties:
+      genreDescr:
+        type: string
+      genreName:
+        type: string
+    type: object
+  model.PlayList:
+    properties:
+      created_at:
+        description: created at automatically inserted on post
+        format: date-time
+        type: string
+      creation_date:
+        format: date
+        type: string
+      id:
+        description: model ID
+        format: uuid
+        type: string
+      playlist_desc:
+        type: string
+      playlist_name:
+        type: string
+      playlist_pic:
+        type: string
+      playlist_type:
+        $ref: '#/definitions/model.PlaylistType'
+      playlist_type_id:
+        format: uuid
+        type: string
+      updated_at:
+        description: updated at automatically changed on put or add on post
+        format: date-time
+        type: string
+    type: object
+  model.PlayListApi:
+    properties:
+      creation_date:
+        format: date
+        type: string
+      playlist_desc:
+        type: string
+      playlist_name:
+        type: string
+      playlist_pic:
+        type: string
+      playlist_type_id:
+        format: uuid
+        type: string
+    type: object
+  model.PlaylistType:
+    properties:
+      created_at:
+        description: created at automatically inserted on post
+        format: date-time
+        type: string
+      id:
+        description: model ID
+        format: uuid
+        type: string
+      playlist_type_name:
+        type: string
+      updated_at:
+        description: updated at automatically changed on put or add on post
+        format: date-time
+        type: string
+    type: object
+  model.PlaylistTypeApi:
+    properties:
+      playlist_type_name:
+        type: string
+    type: object
+  model.Song:
+    properties:
+      artist:
+        $ref: '#/definitions/model.Artist'
+      artist_id:
+        description: model ID
+        format: uuid
+        type: string
+      created_at:
+        description: created at automatically inserted on post
+        format: date-time
+        type: string
+      description:
+        type: string
+      gendre:
+        type: string
+      id:
+        description: model ID
+        format: uuid
+        type: string
+      name:
+        type: string
+      updated_at:
+        description: updated at automatically changed on put or add on post
+        format: date-time
+        type: string
+      year:
+        type: integer
+    type: object
+  model.SongApi:
+    properties:
+      artist_id:
+        description: model ID
+        format: uuid
+        type: string
+      description:
+        type: string
+      gendre:
+        type: string
+      name:
+        type: string
+      year:
+        type: integer
+    type: object
+host: localhost:8000
+info:
+  contact:
+    email: developer.team.tog@gmail.com
+    name: Developer
+  description: API Documentation
+  termsOfService: https://dospecs.monstercode.net/en/guide/tnc.html
+  title: My Project
+  version: 1.0.0
+paths:
+  /:
+    get:
+      consumes:
+      - application/json
+      description: show basic response
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/lib.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/lib.Response'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/lib.Response'
+        "409":
+          description: conflict
+          schema:
+            $ref: '#/definitions/lib.Response'
+        "500":
+          description: internal error
+          schema:
+            $ref: '#/definitions/lib.Response'
+      summary: show basic response
+      tags:
+      - API
+  /album:
+    get:
+      consumes:
+      - application/json
+      description: Get List of Album
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/model.Album'
+            type: array
+      summary: Get List of Album
+      tags:
+      - Album
+    post:
+      consumes:
+      - application/json
+      description: Create new Album
+      parameters:
+      - description: Album data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.AlbumApi'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.AlbumApi'
+        "400":
+          description: ""
+        "401":
+          description: ""
+      summary: Create new Album
+      tags:
+      - Album
+  /album/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Album by id
+      parameters:
+      - description: Album ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "404":
+          description: ""
+      summary: Delete Album by id
+      tags:
+      - Album
+    get:
+      consumes:
+      - application/json
+      description: get Album by ID
+      parameters:
+      - description: Album ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/model.Album'
+        "400":
+          description: ""
+        "404":
+          description: ""
+      summary: get Album by ID
+      tags:
+      - Album
+    put:
+      consumes:
+      - application/json
+      description: Update Album by id
+      parameters:
+      - description: Album ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Album data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.AlbumApi'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.AlbumApi'
+        "400":
+          description: ""
+        "401":
+          description: ""
+      summary: Update Album by id
+      tags:
+      - Album
+  /artist:
+    get:
+      consumes:
+      - application/json
+      description: Get List of Artist
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/model.Artist'
+            type: array
+      summary: Get List of Artist
+      tags:
+      - Artist
+    post:
+      consumes:
+      - application/json
+      description: Create new Artist
+      parameters:
+      - description: Artist data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.ArtistApi'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.ArtistApi'
+        "400":
+          description: ""
+        "401":
+          description: ""
+      summary: Create new Artist
+      tags:
+      - Artist
+  /artist/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Artits by id
+      parameters:
+      - description: Artits ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "404":
+          description: ""
+      summary: Delete Artits by id
+      tags:
+      - Artist
+    get:
+      consumes:
+      - application/json
+      description: Get Artist by id
+      parameters:
+      - description: Artist ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/model.Artist'
+            type: array
+        "400":
+          description: ""
+        "404":
+          description: ""
+      summary: Get Artist by id
+      tags:
+      - Artist
+    put:
+      consumes:
+      - application/json
+      description: Update Artist by id
+      parameters:
+      - description: Artist ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Artist data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.ArtistApi'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.ArtistApi'
+        "400":
+          description: ""
+        "401":
+          description: ""
+      summary: Update Artist by id
+      tags:
+      - Artist
+  /gendre:
+    get:
+      consumes:
+      - application/json
+      description: Get List of Gendre
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/model.Gendre'
+            type: array
+      summary: Get List of Gendre
+      tags:
+      - Gendre
+    post:
+      consumes:
+      - application/json
+      description: create new gendre
+      parameters:
+      - description: Gendre data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GendreApi'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: created
+          schema:
+            $ref: '#/definitions/model.GendreApi'
+        "400":
+          description: ""
+        "401":
+          description: ""
+      summary: Create new Gendre
+      tags:
+      - Gendre
+  /gendre/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Gendre by id
+      parameters:
+      - description: Gendre ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "404":
+          description: ""
+      summary: Delete Gendre by id
+      tags:
+      - Gendre
+    get:
+      consumes:
+      - application/json
+      description: get gendre by ID
+      parameters:
+      - description: Gendre ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/model.Gendre'
+        "400":
+          description: ""
+        "404":
+          description: ""
+      summary: get gendre by ID
+      tags:
+      - Gendre
+    put:
+      consumes:
+      - application/json
+      description: udpated Gendre by Id
+      parameters:
+      - description: Gendre ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Gendre data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GendreApi'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.GendreApi'
+        "401":
+          description: ""
+        "404":
+          description: ""
+      summary: Updated Gendre by Id
+      tags:
+      - Gendre
+  /info.json:
+    get:
+      consumes:
+      - application/json
+      description: show info response
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/lib.Response'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/lib.Response'
+        "409":
+          description: conflict
+          schema:
+            $ref: '#/definitions/lib.Response'
+        "500":
+          description: internal error
+          schema:
+            $ref: '#/definitions/lib.Response'
+      summary: show info response
+      tags:
+      - API
+  /playlist:
+    get:
+      consumes:
+      - application/json
+      description: Get List of Playlist
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/model.PlayList'
+            type: array
+      summary: Get List of Playlist
+      tags:
+      - Playlist
+    post:
+      consumes:
+      - application/json
+      description: Create new Playlist
+      parameters:
+      - description: Playlist data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.PlayListApi'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.PlayListApi'
+        "400":
+          description: ""
+        "401":
+          description: ""
+      summary: Create new Playlist
+      tags:
+      - Playlist
+  /playlist/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Playlist by id
+      parameters:
+      - description: Playlist ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "404":
+          description: ""
+      summary: Delete Playlist by id
+      tags:
+      - Playlist
+    get:
+      consumes:
+      - application/json
+      description: get Playlist by ID
+      parameters:
+      - description: PlayList ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/model.PlayList'
+        "400":
+          description: ""
+        "404":
+          description: ""
+      summary: get Playlist by ID
+      tags:
+      - Playlist
+    put:
+      consumes:
+      - application/json
+      description: Update Playlist by id
+      parameters:
+      - description: Playlist ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Playlist data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.PlayListApi'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PlayListApi'
+        "400":
+          description: ""
+        "401":
+          description: ""
+      summary: Update Playlist by id
+      tags:
+      - Playlist
+  /playlist_type:
+    get:
+      consumes:
+      - application/json
+      description: Get List of PlaylistType
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/model.PlaylistType'
+            type: array
+      summary: Get List of PlaylistType
+      tags:
+      - PlaylistType
+    post:
+      consumes:
+      - application/json
+      description: create new PlaylistType
+      parameters:
+      - description: PlaylistType data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.PlaylistTypeApi'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: created
+          schema:
+            $ref: '#/definitions/model.PlaylistTypeApi'
+        "400":
+          description: ""
+        "401":
+          description: ""
+      summary: Create new PlaylistType
+      tags:
+      - PlaylistType
+  /playlist_type/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete PlaylistType by id
+      parameters:
+      - description: PlaylistType ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "404":
+          description: ""
+      summary: Delete PlaylistType by id
+      tags:
+      - PlaylistType
+    get:
+      consumes:
+      - application/json
+      description: get PlaylistType by ID
+      parameters:
+      - description: PlaylistType ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/model.PlaylistType'
+        "400":
+          description: ""
+        "404":
+          description: ""
+      summary: get PlaylistType by ID
+      tags:
+      - PlaylistType
+    put:
+      consumes:
+      - application/json
+      description: udpated PlaylistType by Id
+      parameters:
+      - description: PlaylistType ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: PlaylistType data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.PlaylistTypeApi'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PlaylistTypeApi'
+        "401":
+          description: ""
+        "404":
+          description: ""
+      summary: Updated PlaylistType by Id
+      tags:
+      - PlaylistType
+  /song:
+    get:
+      consumes:
+      - application/json
+      description: Get List of Song
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/model.Song'
+            type: array
+      summary: Get List of Song
+      tags:
+      - Song
+    post:
+      consumes:
+      - application/json
+      description: Create new Song
+      parameters:
+      - description: Song data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SongApi'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.SongApi'
+        "400":
+          description: ""
+        "401":
+          description: ""
+      summary: Create new Song
+      tags:
+      - Song
+  /song/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Song by id
+      parameters:
+      - description: Song ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "404":
+          description: ""
+      summary: Delete Song by id
+      tags:
+      - Song
+    get:
+      consumes:
+      - application/json
+      description: Get Song by id
+      parameters:
+      - description: Song ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/model.Song'
+            type: array
+        "400":
+          description: ""
+        "404":
+          description: ""
+      summary: Get Song by id
+      tags:
+      - Song
+    put:
+      consumes:
+      - application/json
+      description: Update Song by id
+      parameters:
+      - description: Song ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Song data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SongApi'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.SongApi'
+        "400":
+          description: ""
+        "401":
+          description: ""
+      summary: Update Song by id
+      tags:
+      - Song
+schemes:
+- http
+swagger: "2.0"
