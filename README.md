@@ -1,7 +1,10 @@
 # Base Project
 
-[API Specs](https://gospecs.monstercode.net)
+# how to test API local ?
 
+-> pergi ke folder docs dan pilih file swagger.yaml
+-> copy code tersebut dan kemudian buka
+-> editor.swagger.io dan pastekan codenya di sana
 
 [Restful api MUSIC (galang Bootcamp)]
 
@@ -67,6 +70,9 @@ Get Coverage:
 ```bash
 go tool cover -html cover.txt
 
+
+
+-----Goreaportcard
 
 
 
